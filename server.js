@@ -28,7 +28,7 @@ app.get('/hello-world.jpeg', (req, res) => {
   res.sendFile(path.join(__dirname, 'hello-world.jpeg'));
 });
 
-app.get('/*splat', (req, res) => {
+app.all('/*splat', (req, res) => {
   res.status(404).send(`${req.method} is not supported on ${req.path}`);
 });
 
