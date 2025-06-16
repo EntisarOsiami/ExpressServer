@@ -17,7 +17,7 @@ app.get('/hello-world', (req, res) => {
 });
 
 app.get('/hello-world.json', (req, res) => {
-  res.send({
+  res.status(200).json({
     status: 'success',
     code: 200,
     message: 'Hello, World!',
@@ -30,10 +30,13 @@ app.get('/hello-world.jpeg', (req, res) => {
 
 
 
-app.get('*', (req, res) => {
+app.get('/*splat', (req, res) => {
   res.status(404).send(`${req.method} is not supported on ${req.path}`);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, (error) => {
+  if (error) {
+throw error;
+  }
   console.log(`Server is running on http://localhost:${PORT}`);
 });
